@@ -1,0 +1,15 @@
+# DOCKER COMPOSE
+# postgre
+# create postgre user
+# create database
+# expose database port 
+
+# DOCKER FILE 
+# php+fpm
+# php dependencies
+
+# nginx 
+# configure network for use nginx server
+
+# copy picpay laravel project to /var/www/
+# install project

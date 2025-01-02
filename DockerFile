@@ -1,15 +1,33 @@
-# DOCKER COMPOSE
-# postgre
-# create postgre user
-# create database
-# expose database port 
+# Use a imagem oficial do PHP com FPM
+FROM php:8.2-fpm
 
-# DOCKER FILE 
-# php+fpm
-# php dependencies
+# Instalar dependências do sistema
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpq-dev \
+    unzip \
+    libonig-dev \
+    libzip-dev \
+    && docker-php-ext-install pdo_pgsql zip mbstring
 
-# nginx 
-# configure network for use nginx server
+# Instalar Composer
+# COPY --from=composer:2 /usr/bin/composer /usr/bin/composer // desnecessário
 
-# copy picpay laravel project to /var/www/
-# install project
+# Criar o diretório de trabalho
+WORKDIR /var/www
+
+# Copiar o projeto Laravel
+COPY picpay/ /var/www
+
+# Ajustar permissões
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
+# Instalar dependências do Laravel
+RUN composer install --optimize-autoloader --no-dev
+
+# Expor a porta do PHP-FPM
+EXPOSE 9000
+
+# Comando para iniciar o PHP-FPM
+CMD ["php-fpm"]

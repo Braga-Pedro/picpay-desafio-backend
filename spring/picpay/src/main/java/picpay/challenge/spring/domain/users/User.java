@@ -1,3 +1,5 @@
+package picpay.challenge.spring.domain.users;
+
 public class User {
     // first name: [string(50), not null]
     // last name: [string(50), nullabel]
@@ -6,5 +8,4 @@ public class User {
     // document: [string(40), unique, not null]
     // level: [enum[seller, common]]
     // timestamp? created_at/updated_at/deleted_at
-
 }

@@ -1,3 +1,5 @@
+package picpay.challenge.spring.domain.transactions;
+
 public class Transaction {
     // user | user_id: foreing relation
     // type: [enum [paid, received], not null]
